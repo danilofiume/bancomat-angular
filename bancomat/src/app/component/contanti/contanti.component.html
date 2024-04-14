@@ -1,0 +1,22 @@
+<div class="text-center mt-3">
+    <h4>Deposita Contanti</h4>
+    <h5>Quanto vuoi despositare?</h5>
+    <div class="text-start">
+        <form [formGroup]="depositaContanti" (ngSubmit)="depositaC()">
+            <label class="d-block mb-2" for="contanti">Inserisci il valore da despoitare</label>
+            <input class="col-12 mb-2" type="text" id="contanti" formControlName="contanti" >
+            @if (depositaContanti.controls.contanti.errors?.pattern) {
+                <p class="text-danger">Il valore deve essere numerico</p>
+            }
+           
+            <button class="btn btn-success " type="submit" [disabled]="!depositaContanti.valid">Deposita Contanti</button>
+
+            @if (mostraNuovoSaldo) {
+                <p class="mt-3 text-success" >Deposito effettuato. Il nuovo saldo disponibile è {{ saldoContante | currency: 'EUR'}}</p>
+            }
+
+        </form>
+    </div>
+
+ 
+</div>

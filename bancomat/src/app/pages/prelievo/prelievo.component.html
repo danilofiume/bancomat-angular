@@ -1,0 +1,27 @@
+<div class="text-center mt-5">
+    <h2 class="text-success">PRELIEVO</h2>
+    <h3>Quanto vuoi prelevare?</h3>
+    <div class="text-start">
+        <form [formGroup]="prelevaForm" (ngSubmit)="preleva()">
+            <label class="d-block mb-2" for="prelievo">Inserisci il valore da prelevare</label>
+            <input class="col-12 mb-2" type="text" id="prelievo" formControlName="prelievo" >
+            
+            @if (prelevaForm.controls.prelievo.errors?.pattern) {
+                <p class="text-danger">Il valore deve essere numerico</p>
+            }
+           
+            <button class="btn btn-success " [disabled]="!prelevaForm.valid"  type="submit">Preleva</button>
+
+            @if (mostraNuovoSaldo) {
+                <p class="mt-3 text-success" >Prelievo effettuato. Il nuovo saldo disponibile è {{ saldo | currency: 'EUR'}}</p>
+            }
+
+            @if (erroreSaldoInsufficiente) {
+                <p class="mt-3 text-danger">Impossibile prelevare: il saldo non è sufficiente.</p>
+            }
+
+        
+        </form>
+    </div>
+    
+</div>
